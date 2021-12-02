@@ -22,7 +22,6 @@
 // SOFTWARE.
 
 import Foundation
-import UIKit
 
 /**
  Features that exist in Attributed are written as extensions to this class `Attributed`.

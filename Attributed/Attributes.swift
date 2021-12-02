@@ -21,7 +21,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+import Foundation
+
+#if os(OSX)
+import AppKit
+public typealias Color = NSColor
+public typealias Font = NSFont
+#elseif os(iOS) || targetEnvironment(macCatalyst)  || os(tvOS)
 import UIKit
+public typealias Color = UIColor
+public typealias Font = UIFont
+#endif
 
 public struct Attributes {
 
@@ -39,7 +49,7 @@ public struct Attributes {
         self.dictionary = dictionary
     }
 
-    public func font(_ font: UIFont) -> Attributes {
+    public func font(_ font: Font) -> Attributes {
         return self + Attributes(dictionary: [NSAttributedString.Key.font: font])
     }
 
@@ -55,7 +65,7 @@ public struct Attributes {
         return self + Attributes(dictionary: [NSAttributedString.Key.underlineStyle: underlineStyle.rawValue])
     }
 
-    public func strokeColor(_ strokeColor: UIColor) -> Attributes {
+    public func strokeColor(_ strokeColor: Color) -> Attributes {
         return self + Attributes(dictionary: [NSAttributedString.Key.strokeColor: strokeColor])
     }
 
@@ -63,11 +73,11 @@ public struct Attributes {
         return self + Attributes(dictionary: [NSAttributedString.Key.strokeWidth: NSNumber(floatLiteral: strokewidth)])
     }
 
-    public func foreground(color: UIColor) -> Attributes {
+    public func foreground(color: Color) -> Attributes {
         return self + Attributes(dictionary: [NSAttributedString.Key.foregroundColor: color])
     }
 
-    public func background(color: UIColor) -> Attributes {
+    public func background(color: Color) -> Attributes {
         return self + Attributes(dictionary: [NSAttributedString.Key.backgroundColor: color])
     }
 

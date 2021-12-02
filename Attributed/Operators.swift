@@ -21,7 +21,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+import Foundation
+
+#if os(OSX)
+import AppKit
+#elseif os(iOS) || targetEnvironment(macCatalyst)  || os(tvOS)
 import UIKit
+#endif
 
 public func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
     let result = NSMutableAttributedString()

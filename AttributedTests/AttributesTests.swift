@@ -26,7 +26,7 @@ import XCTest
 
 class AttributesTests: XCTestCase {
     func testFont() {
-        let expected: [String: Any] = [NSAttributedString.Key.font.rawValue: UIFont.systemFont(ofSize: 12.0)]
+        let expected: [String: Any] = [NSAttributedString.Key.font.rawValue: Font.systemFont(ofSize: 12.0)]
         let attributed = Attributes().font(.systemFont(ofSize: 12.0))
         XCTAssert(attributed.dictionary.keys.first!.rawValue == expected.keys.first!, "Font is broken")
     }
@@ -48,8 +48,8 @@ class AttributesTests: XCTestCase {
     
     func testStrokeColor() {
         let testText = "Smoke Test"
-        let smokeTestString = testText.at.attributed { $0.strokeColor(.green) }
-        let baseString = NSAttributedString(string: testText, attributes: [ .strokeColor : UIColor.green])
+        let smokeTestString = testText.at.attributed { $0.strokeColor(Color.green) }
+        let baseString = NSAttributedString(string: testText, attributes: [ .strokeColor : Color.green])
         
         XCTAssert(smokeTestString == baseString, "StrokeColor functionality is broken")
     }
@@ -73,7 +73,7 @@ class AttributesTests: XCTestCase {
     func testForegroundColor() {
         let testText = "Smoke Test"
         let smokeTestString = testText.at.attributed { $0.foreground(color: .green) }
-        let baseString = NSAttributedString(string: testText, attributes: [ .foregroundColor : UIColor.green])
+        let baseString = NSAttributedString(string: testText, attributes: [ .foregroundColor : Color.green])
         
         XCTAssert(smokeTestString == baseString, "Foreground color functionality is broken")
     }
@@ -81,7 +81,7 @@ class AttributesTests: XCTestCase {
     func testBackgroundColor() {
         let testText = "Smoke Test"
         let smokeTestString = testText.at.attributed { $0.background(color: .green) }
-        let baseString = NSAttributedString(string: testText, attributes: [ .backgroundColor : UIColor.green])
+        let baseString = NSAttributedString(string: testText, attributes: [ .backgroundColor : Color.green])
         
         XCTAssert(smokeTestString == baseString, "Background color functionality is broken")
     }

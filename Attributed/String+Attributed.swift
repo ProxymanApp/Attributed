@@ -22,7 +22,12 @@
 // SOFTWARE.
 
 import Foundation
+
+#if os(OSX)
+import AppKit
+#elseif os(iOS) || targetEnvironment(macCatalyst)  || os(tvOS)
 import UIKit
+#endif
 
 // MARK: Primary Extension
 

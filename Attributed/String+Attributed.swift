@@ -62,3 +62,28 @@ public extension Attributed where Base == NSAttributedString {
         return NSAttributedString(attributedString: result)
     }
 }
+
+// MARK: - Public Extensions
+
+public extension Attributed where Base == NSMutableAttributedString {
+
+    func set(_ attributes: Attributes, at subText: String?) {
+        guard let subText = subText else { return }
+        let range = (self.base.string as NSString).range(of: subText, options: .caseInsensitive)
+        if range.location != NSNotFound {
+            add(attributes, to: range)
+        }
+    }
+}
+
+public extension Attributed where Base == NSAttributedString {
+
+    func set(_ attributes: Attributes, at subText: String?) -> NSAttributedString {
+        guard let subText = subText else { return self.base }
+        let range = (self.base.string as NSString).range(of: subText, options: .caseInsensitive)
+        if range.location != NSNotFound {
+            return modified(with: attributes, for: range)
+        }
+        return self.base
+    }
+}

@@ -28,7 +28,7 @@ import Foundation
  */
 
 public final class Attributed<Base> {
-    let base: Base
+    public let base: Base
     public init(_ base: Base) {
         self.base = base
     }

@@ -47,9 +47,13 @@ extension Attributed where Base == String {
 public extension Attributed where Base == NSMutableAttributedString {
 
     func add(_ attributes: Attributes, to range: NSRange) {
-        base.addAttributes(attributes.dictionary, range: range)
-    }
 
+        // make sure it's not out of bounds -> Crash on AppCenter
+        let str = base.string
+        if (range.location != NSNotFound && range.location + range.length <= str.utf16.count) {
+            base.addAttributes(attributes.dictionary, range: range)
+        }
+    }
 }
 
 public extension Attributed where Base == NSAttributedString {
